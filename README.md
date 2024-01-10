@@ -82,19 +82,13 @@ To run the application locally, follow these steps:
 
 3. **Backend Setup:**
 
-    1. Navigate to the backend folder:
-
-        ```bash
-        cd backend
-        ```
-
-    2. Install dependencies:
+    1. Install dependencies:
 
         ```bash
         npm install
         ```
 
-    3. Start the server:
+    2. Start the server:
 
         ```bash
         npm start
