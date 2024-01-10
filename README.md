@@ -114,6 +114,8 @@ To run the application locally, follow these steps:
 
 Now, you're all set to run the E-Commerce App locally. Open your web browser and go to [http://localhost:4000](http://localhost:4000) to explore the application.
 
+## Things to Learn
+
 <details>
   <summary>JWT (JSON Web Tokens)</summary>
   
