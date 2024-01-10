@@ -25,7 +25,7 @@ const Login = () => {
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
         setAuth({
-          ...auth,
+          ...auth,  //keep previous values as it is
           user: res.data.user,
           token: res.data.token,
         });
@@ -40,7 +40,7 @@ const Login = () => {
     }
   };
   return (
-    <Layout title="Register - Ecommer App">
+    <Layout title="Login - Ecommerce App">
       <div className="form-container ">
         <form onSubmit={handleSubmit}>
           <h4 className="title">LOGIN FORM</h4>

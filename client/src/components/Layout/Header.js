@@ -17,7 +17,7 @@ const Header = () => {
       user: null,
       token: "",
     });
-    localStorage.removeItem("auth");
+    localStorage.removeItem("auth");  //clearing local storage
     toast.success("Logout Successfully");
   };
   return (

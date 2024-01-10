@@ -29,7 +29,7 @@ const Layout = ({ children,title,description,keywords,author }) => {   //directl
   );
 };
 
-//Default props for all pages/components
+//Default props for all pages/components since every page need not have description,title,keywords,author
 Layout.defaultProps = {
   title : 'Ecommerce app - shop now',
   description : 'Mern Stack Project',

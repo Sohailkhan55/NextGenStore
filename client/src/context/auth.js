@@ -9,19 +9,20 @@ const AuthProvider = ({ children }) => {
   });
 
   //default axios
-  axios.defaults.headers.common["Authorization"] = auth?.token;
+  axios.defaults.headers.common["Authorization"] = auth?.token; //by default every request will have headers
 
   useEffect(() => {
     const data = localStorage.getItem("auth");
     if (data) {
       const parseData = JSON.parse(data);
-      setAuth({
+      setAuth({ //set global state
         ...auth,
         user: parseData.user,
         token: parseData.token,
       });
     }
     //eslint-disable-next-line
+    //to disable dependency
   }, []);
   return (
     <AuthContext.Provider value={[auth, setAuth]}>

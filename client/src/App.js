@@ -24,11 +24,13 @@ import Categories from "./pages/Categories";
 import CategoryProduct from "./pages/CategoryProduct";
 import CartPage from "./pages/CartPage";
 import AdminOrders from "./pages/Admin/AdminOrders";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
       {/* Routes acts as a container */}
+      <Toaster/>
       <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/product/:slug" element={<ProductDetails />} />
