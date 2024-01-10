@@ -46,7 +46,6 @@ Explore the world of online shopping with our feature-rich E-Commerce App, devel
 
 10. **Admin Features - User Management:**
     - View and edit user details.
-    - Create new products and categories for a dynamic selection.
 
 ## Installation
 
