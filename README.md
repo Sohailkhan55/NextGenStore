@@ -39,16 +39,14 @@ Explore the world of online shopping with our feature-rich E-Commerce App, devel
    - View all orders and update profile information.
    - Efficient management of user-related tasks.
 
-9. **Admin Features - Food Management:**
-   - Add, edit, and delete food items to maintain an up-to-date menu.
+9. **Admin Features - Order Management:**
+   - Add, edit, and delete items to maintain an up-to-date stock.
    - Create new products and categories for a dynamic selection.
+   - View all orders and change delivery status (delivered, processing, etc.).
 
 10. **Admin Features - User Management:**
     - View and edit user details.
     - Create new products and categories for a dynamic selection.
-
-11. **Admin Features - Order Management:**
-    - View all orders and change delivery status (delivered, processing, etc.).
 
 ## Installation
 
