@@ -54,13 +54,13 @@ Explore the world of online shopping with our feature-rich E-Commerce App, devel
 
 To run the application locally, follow these steps:
 
-1. ### Clone the Repository:
+1. ** Clone the Repository: **
 
     ```bash
     git clone [repository-url]
     ```
 
-2. ### Frontend Setup:
+2. ** Frontend Setup: **
 
     1. Navigate to the frontend folder:
 
@@ -80,7 +80,7 @@ To run the application locally, follow these steps:
         npm start
         ```
 
-3. ### Backend Setup:
+3. ** Backend Setup: **
 
     1. Navigate to the backend folder:
 
@@ -100,7 +100,7 @@ To run the application locally, follow these steps:
         npm start
         ```
 
-4. ### Connect to MongoDB:
+4. ** Connect to MongoDB: **
 
     1. Create a MongoDB Atlas account: [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
     2. Update the connection details in the `.env` file located in the 'backend' directory:
