@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import axios from 'axios';
 import {Select} from 'antd';
 import { useNavigate } from 'react-router-dom';
-const {Option} = Select
+const {Option} = Select;//destructure option from select to make drop down menu
 
 const CreateProduct = () => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const CreateProduct = () => {
   //get all category
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get('http://localhost:4000/api/v1/category/get-category');
+      const { data } = await axios.get('/api/v1/category/get-category');
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -50,7 +50,7 @@ const CreateProduct = () => {
       productData.append('category',category);
 
 
-      const {data} = axios.post('http://localhost:4000/api/v1/product/create-product',productData);
+      const {data} = axios.post('/api/v1/product/create-product',productData);
       if(data?.success){
         toast.error(data?.message);
       }
@@ -91,6 +91,7 @@ const CreateProduct = () => {
                       {photo && (
                         <div className='text-center'>
                           <img src={URL.createObjectURL(photo)} alt='product_Photo' height={'200px'} className='img img-responsive' />
+                          {/* get photo from URL parameter */}
                         </div>
                       )}
                   </div>

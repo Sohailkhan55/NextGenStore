@@ -8,7 +8,7 @@ const orderSchema = new mongoose.Schema(
         ref: "Products",  //for realtionship
       },
     ],
-    payment: {},
+    payment: {}, //object
     buyer: {
       type: mongoose.ObjectId,
       ref: "users",
@@ -16,7 +16,7 @@ const orderSchema = new mongoose.Schema(
     status: {
       type: String,
       default: "Not Process",
-      enum: ["Not Process", "Processing", "Shipped", "Delivered", "Cancel"],
+      enum: ["Not Process", "Processing", "Shipped", "Delivered", "Cancel"],//multiple values
     },
   },
   { timestamps: true }

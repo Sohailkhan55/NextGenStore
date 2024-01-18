@@ -98,7 +98,7 @@ export const productPhotoController = async (req,res) => {
         const product = await productModel.findById(req.params.pid).select("photo");//take photo only
         if(product.photo.data)
         {
-            res.set('Content-type',product.photo.contentType);
+            res.set('Content-type',product.photo.contentType); //set content type of response
             return res.status(200).send(product.photo.data);
         }
     }catch(error){
@@ -179,7 +179,7 @@ export const productFiltersController = async (req,res) => {
 
             args.price = {$gte : radio[0],$lte : radio[1]}
         }
-        const products = await productModel.find(args);
+        const products = await productModel.find(args); //in args,we've queries
         res.status(200).send({
             success : true,
             products
@@ -197,7 +197,7 @@ export const productFiltersController = async (req,res) => {
 // product count
 export const productCountController = async (req,res) => {
     try{
-        const total = await productModel.find({}).estimatedDocumentCount();
+        const total = await productModel.find({}).estimatedDocumentCount(); //return count of all documents
         res.status(200).send({
             success : true,
             total,
@@ -216,7 +216,7 @@ export const productCountController = async (req,res) => {
 // product list based on page
 export const productListController = async (req,res) => {
     try{
-        const perPage = 2;
+        const perPage = 6;
         const page = req.params.page ? req.params.page : 1;
         const products = await productModel.find({}).select("-photo").skip((page-1)*perPage).limit(perPage).sort({createdAt:-1});
         res.status(200).send({
@@ -227,7 +227,7 @@ export const productListController = async (req,res) => {
         console.log(error);
         res.status(400).send({
             success : false,
-            message : 'Error in per page ctrl',
+            message : 'Error in per page controller',
             error
         })
     }
@@ -260,9 +260,9 @@ export const relatedProductController = async (req,res) => {
         const products = await productModel.find({
             category : cid,
             _id:{
-                $ne:pid
+                $ne:pid //not equal to 
             }
-        }).select("-photo").limit(3).populate("category");//show all products of that category except current showing product
+        }).select("-photo").limit(3).populate("category");//show all products of that category except current showing product,show upto 3 products
         res.status(200).send({
             success : true,
             products
@@ -301,7 +301,7 @@ export const productCategoryController = async (req,res) => {
 //token
 export const braintreeTokenController = async (req,res) => {
     try{
-        gateway.clientToken.generate({}, function(err,response){
+        gateway.clientToken.generate({}, function(err,response){ //get token from gateway
             if(err){
                 res.status(500).send(err);
             }
@@ -322,7 +322,7 @@ export const braintreePaymentController = async (req,res) => {
         cart.map((i) => {
         total += i.price;
         });
-        let newTransaction = gateway.transaction.sale({
+        let newTransaction = gateway.transaction.sale({ //create new transaction
             amount:total,
             paymentMethodNonce : nonce,
             options : {
@@ -339,7 +339,7 @@ export const braintreePaymentController = async (req,res) => {
                 res.json({ok : true});
             }
             else{
-                res.tatus(500).send(error);
+                res.status(500).send(error);
             }
         }
         )

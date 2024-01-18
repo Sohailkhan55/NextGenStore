@@ -17,23 +17,23 @@ const CreateCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post('http://localhost:4000/api/v1/category/create-category', { name });
+      const { data } = await axios.post('/api/v1/category/create-category', { name });
       if (data?.success) {
-        toast.success(`${name} is created`); // dynamic message
+        toast.success(`${name} created successfully`); // dynamic message
         getAllCategory();
       } else {
         toast.error(data.message);
       }
     } catch (error) {
       console.log(error);
-      toast.error('Something went wrong in input Form');
+      toast.error('Something went wrong in Input Form');
     }
   };
 
   // get all category
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get('http://localhost:4000/api/v1/category/get-category');
+      const { data } = await axios.get('/api/v1/category/get-category');
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -52,15 +52,15 @@ const CreateCategory = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.put(`http://localhost:4000/api/v1/category/update-category/${selected._id}`, {
+      const { data } = await axios.put(`/api/v1/category/update-category/${selected._id}`, {  //selected is state
         name: updatedName,
       });
       if (data.success) {
-        toast.success(`${updatedName} is updated`);
+        toast.success(`${updatedName} updated successfully`);
         setSelected(null);
         setUpdatedName('');
         setOpen(false); // after submit, pop up model closes
-        getAllCategory();
+        getAllCategory(); //so that at initial time we get all categories
       } else {
         toast.error(data.message);
       }
@@ -72,11 +72,11 @@ const CreateCategory = () => {
     // delete category
     const handleDelete = async (pId) => {
         try {
-          const { data } = await axios.delete(`http://localhost:4000/api/v1/category/delete-category/${pId}`, {
+          const { data } = await axios.delete(`/api/v1/category/delete-category/${pId}`, {
             name: updatedName,
           });
           if (data.success) {
-            toast.success(`Category is deleted`);
+            toast.success(`Category deleted successfully`);
             getAllCategory();
           } else {
             toast.error(data.message);
@@ -122,14 +122,15 @@ const CreateCategory = () => {
                           Edit
                         </button>
                         {/* Model will pop up when clicked */}
-                        <button className='btn btn-danger ms-2' onClick={()=>{handleDelete(c._id)}}>Delete</button>
+                        <button className='btn btn-danger ms-2' onClick={()=>{handleDelete(c._id);}}>Delete</button>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <Modal onCancel={() => setOpen(false)} footer={null} open={open}>
+            <Modal onCancel={() => setOpen(false)} footer={null} open={open}> 
+            {/* to open a pop up when edit button is clicked */}
               <CategoryForm value={updatedName} setValue={setUpdatedName} handleSubmit={handleUpdate} />
             </Modal>
           </div>

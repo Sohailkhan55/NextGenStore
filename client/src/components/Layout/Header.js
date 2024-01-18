@@ -10,7 +10,7 @@ import { Avatar, Badge } from "antd";
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
-  const categories = useCategory();
+  const categories = useCategory(); //custom hook
   const handleLogout = () => {
     setAuth({
       ...auth,

@@ -11,8 +11,8 @@ const SearchInput = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            const {data} = await axios.get(`http://localhost:4000/api/v1/product/search/${values.keyword}`);
-            setValues({...values,results:data});
+            const {data} = await axios.get(`/api/v1/product/search/${values.keyword}`);
+            setValues({...values,results:data}); //fulfill results array with data which is in search.js
             navigate('/search');
         }catch(error){
             console.log(error);

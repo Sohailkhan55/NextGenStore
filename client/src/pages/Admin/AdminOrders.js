@@ -21,7 +21,7 @@ const AdminOrders = () => {
   const [auth, setAuth] = useAuth();
   const getOrders = async () => {
     try {
-      const { data } = await axios.get("http://localhost:4000/api/v1/auth/all-orders");
+      const { data } = await axios.get("/api/v1/auth/all-orders");
       setOrders(data);
     } catch (error) {
       console.log(error);
@@ -34,7 +34,7 @@ const AdminOrders = () => {
 
   const handleChange = async (orderId, value) => {
     try {
-      const { data } = await axios.put(`http://localhost:4000/api/v1/auth/order-status/${orderId}`, {
+      const { data } = await axios.put(`/api/v1/auth/order-status/${orderId}`, {
         status: value,
       });
       getOrders();   //call again to update the page
@@ -59,7 +59,7 @@ const AdminOrders = () => {
                       <th scope="col">#</th>
                       <th scope="col">Status</th>
                       <th scope="col">Buyer</th>
-                      <th scope="col"> date</th>
+                      <th scope="col"> Date</th>
                       <th scope="col">Payment</th>
                       <th scope="col">Quantity</th>
                     </tr>
@@ -92,7 +92,7 @@ const AdminOrders = () => {
                     <div className="row mb-2 p-3 card flex-row" key={p._id}>
                       <div className="col-md-4">
                         <img
-                          src={`http://localhost:4000/api/v1/product/product-photo/${p._id}`}
+                          src={`/api/v1/product/product-photo/${p._id}`}
                           className="card-img-top"
                           alt={p.name}
                           width="100px"
@@ -102,7 +102,7 @@ const AdminOrders = () => {
                       <div className="col-md-8">
                         <p>{p.name}</p>
                         <p>{p.description.substring(0, 30)}</p>
-                        <p>Price : {p.price}</p>
+                        <p>Price :₹ {p.price}</p>
                       </div>
                     </div>
                   ))}

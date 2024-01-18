@@ -51,3 +51,6 @@ app.listen(PORT, () => {
 
   );
 });
+
+//Actual MONGO_URL
+//mongodb+srv://Sohail:Test123@cluster0.cmla8od.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp

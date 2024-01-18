@@ -1,7 +1,7 @@
 import express from 'express';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
 import { braintreePaymentController, braintreeTokenController, createProductController, deleteProductController, getProductController, getSingleProductController, productCategoryController, productCountController, productFiltersController, productListController, productPhotoController, relatedProductController, searchProductController, updateProductController } from '../controllers/productController.js';
-import formidable from 'express-formidable';
+import formidable from 'express-formidable';  //for photo
 import braintree from 'braintree';
 
 const router = express.Router();

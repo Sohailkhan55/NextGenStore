@@ -30,9 +30,8 @@ const productSchema = new mongoose.Schema({
         data : Buffer,
         contentType : String
     },
-    shipping:{
+    shipping:{  //status of order
         type:Boolean,
-
     },
 
 

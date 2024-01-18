@@ -11,7 +11,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   const [products,setProducts] = useState([]);
   const [categories,setCategories] = useState([]);
-  const [checked,setChecked] = useState([]);
+  const [checked,setChecked] = useState([]);  //multiple values might be checked
   const [radio,setRadio] = useState([]);
   const [total,setTotal] = useState(0);
   const [page,setPage] = useState(1);
@@ -23,7 +23,7 @@ const HomePage = () => {
     // get all category
     const getAllCategory = async () => {
       try {
-        const { data } = await axios.get('http://localhost:4000/api/v1/category/get-category');
+        const { data } = await axios.get('/api/v1/category/get-category');
         if (data?.success) {
           setCategories(data?.category);
         }
@@ -43,7 +43,7 @@ const HomePage = () => {
   const getAllProducts = async () => {
     try{
       setLoading(true);
-      const {data} = await axios.get(`http://localhost:4000/api/v1/product/product-list/${page}`);
+      const {data} = await axios.get(`/api/v1/product/product-list/${page}`);
       setLoading(false);
       setProducts(data.products);
     }catch(error){
@@ -55,7 +55,7 @@ const HomePage = () => {
     //getTotal count
     const getTotal = async () => {
       try{
-        const{data} = await axios.get('http://localhost:4000/api/v1/product/product-count');
+        const{data} = await axios.get('/api/v1/product/product-count');
         setTotal(data?.total);
       }catch(error){
         console.log(error)
@@ -73,9 +73,9 @@ const HomePage = () => {
   const loadMore = async () => {
     try{
       setLoading(true);
-      const {data} = await axios.get(`http://localhost:4000/api/v1/product/product-list/${page}`);
+      const {data} = await axios.get(`/api/v1/product/product-list/${page}`);
       setLoading(false);
-      setProducts([...products,...data?.products]);
+      setProducts([...products,...data?.products]); //whatever products received,pass them
     }catch(error){
       console.log(error);
       setLoading(false);
@@ -110,8 +110,8 @@ const HomePage = () => {
   //get filtered product
   const filterProduct = async () => {
     try{
-      const {data} = await axios.post('http://localhost:4000/api/v1/product/product-filters',{checked,radio});
-      setProducts(data?.products)
+      const {data} = await axios.post('/api/v1/product/product-filters',{checked,radio});
+      setProducts(data?.products);
     }catch(error){
       console.log(error);
 
@@ -128,8 +128,16 @@ const HomePage = () => {
 
   return (
     <Layout title={'All Products - Best offers'}>
-      <div className="container-fluid row mt-3">
-        <div className="col-md-2">
+       {/* banner image */}
+       <img
+        src="/images/banner.png"
+        className="banner-img"
+        alt="bannerimage"
+        width={"100%"}
+      />
+      {/* banner image */}
+      <div className="container-fluid row mt-3 home-page">
+        <div className="col-md-2 filters">
           <h4 className="text-center">Filter By Category</h4>
           <div className="d-flex flex-column">
           {categories?.map((c) => (
@@ -161,7 +169,7 @@ const HomePage = () => {
           {products?.map((p) => (
                 <div className="card m-2" style={{ width: "18rem" }}>
                   <img
-                    src={`http://localhost:4000/api/v1/product/product-photo/${p._id}`}
+                    src={`/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
                   />

@@ -23,14 +23,14 @@ const ProductDetails = () => {
         if(params?.slug){
             getProduct();
         }
-    },[params?.slug]); //it'll find based on params
+    },[params?.slug]); //it'll find based on slug
 
 
     //getProduct
 const getProduct = async () => {
     try{
 
-        const {data} = await axios.get(`http://localhost:4000/api/v1/product/get-product/${params.slug}`);
+        const {data} = await axios.get(`/api/v1/product/get-product/${params.slug}`);
         setProduct(data?.product);
         getSimilarProduct(data?.product._id,data?.product.category._id);
     }catch(error){
@@ -41,7 +41,7 @@ const getProduct = async () => {
 //get similar products
 const getSimilarProduct = async (pid,cid) => {
     try{
-        const {data} = await axios.get(`http://localhost:4000/api/v1/product/related-product/${pid}/${cid}`);
+        const {data} = await axios.get(`/api/v1/product/related-product/${pid}/${cid}`);
         setRelatedProducts(data?.products);
     }catch(error){
         console.log(error);
@@ -60,7 +60,7 @@ const getSimilarProduct = async (pid,cid) => {
         <div className='row container mt-2'>
             <div className='col-md-6'>
             <img
-                    src={`http://localhost:4000/api/v1/product/product-photo/${product._id}`}
+                    src={`/api/v1/product/product-photo/${product._id}`}
                     className="card-img-top"
                     alt={product.name}
                     height={'300'}
@@ -90,7 +90,7 @@ const getSimilarProduct = async (pid,cid) => {
           {relatedProducts?.map((p) => (
                 <div className="card m-2" style={{ width: "18rem" }}>
                   <img
-                    src={`http://localhost:4000/api/v1/product/product-photo/${p._id}`}
+                    src={`/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
                   />

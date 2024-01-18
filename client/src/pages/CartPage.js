@@ -12,7 +12,7 @@ const CartPage = () => {
   const [auth,setAuth] = useAuth();
   const [cart,setCart] = useCart();  
   const [clientToken ,setClientToken] = useState("");
-  const [instance,setInstance] = useState("");
+  const [instance,setInstance] = useState(""); //state
   const [loading,setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ const CartPage = () => {
       let index = myCart.findIndex(item => item._id === pid);
       myCart.splice(index,1);
       setCart(myCart);
-      localStorage.setItem('cart',JSON.stringify(myCart));
+      localStorage.setItem('cart',JSON.stringify(myCart));  //save new cart locally in browser
     }catch(error){
       console.log(error);
     }
@@ -48,8 +48,8 @@ const CartPage = () => {
   //get payment gateway token
   const getToken = async () => {
     try{
-      const {data} = await axios.get('http://localhost:4000/api/v1/product/braintree/token');
-      setClientToken(data?.clientToken);
+      const {data} = await axios.get('/api/v1/product/braintree/token');
+      setClientToken(data?.clientToken); //we get clientToken from api
     }catch(error){
       console.log(error);
     }
@@ -65,7 +65,7 @@ const CartPage = () => {
     try {
       setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
-      const { data } = await axios.post("http://localhost:4000/api/v1/product/braintree/payment", {
+      const { data } = await axios.post("/api/v1/product/braintree/payment", {
         nonce,
         cart,
       });
@@ -100,7 +100,7 @@ const CartPage = () => {
                     <div className='row mb-2 p-3 card flex-row'>
                       <div className='col-md-4'>
                       <img
-                        src={`http://localhost:4000/api/v1/product/product-photo/${p._id}`}
+                        src={`/api/v1/product/product-photo/${p._id}`}
                         className="card-img-top"
                         alt={p.name}
                         width="100px"

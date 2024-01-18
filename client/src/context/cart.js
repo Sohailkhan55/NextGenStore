@@ -6,7 +6,7 @@ const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    let existingCartItem = localStorage.getItem('cart');
+    let existingCartItem = localStorage.getItem('cart'); //get cart items from local storage
     if(existingCartItem)
     {
         setCart(JSON.parse(existingCartItem));

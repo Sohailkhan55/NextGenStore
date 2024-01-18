@@ -20,7 +20,7 @@ const Dashboard = () => {
                 </div>
             </div>
         </div>
-        <h1>Dashboard</h1>
+        
     </Layout>
   )
 }

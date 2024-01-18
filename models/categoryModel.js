@@ -6,9 +6,9 @@ const categorySchema = new mongoose.Schema({
         required : true,
         unique :true,
     },
-    slug : {
+    slug : {    //converts white space to '-' or '_' ,good for website's axios
         type: String,
-        lowercase:true
+        lowercase:true  //keep everything in lowercase
     }
 
 
