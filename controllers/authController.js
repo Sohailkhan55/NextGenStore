@@ -206,6 +206,7 @@ export const updateProfileController = async (req, res) => {
   }
 };
 
+
 //orders
 export const getOrdersController = async (req,res) => {
   try{
@@ -251,6 +252,27 @@ export const orderStatusController = async(req,res) => {
       success : false,
       message : 'Error while updating order',
       error
+    })
+  }
+}
+
+//all users
+export const getUserController = async (req,res) => {
+  try {
+    const users = await userModel.find({});
+    res.status(200).send({
+      success : true,
+      message : 'All users',
+      users
+    })
+
+  }
+  catch(error){
+    console.log(error);
+    res.status(500).send({
+      success : false,
+      message : 'Error in getting users',
+      error : error.message
     })
   }
 }
