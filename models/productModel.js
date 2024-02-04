@@ -33,7 +33,7 @@ const productSchema = new mongoose.Schema({
     shipping:{  //status of order
         type:Boolean,
     },
-
+    
 
 
 },{timestamps:true});//stores time at which product was created

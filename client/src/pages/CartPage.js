@@ -7,6 +7,7 @@ import DropIn from 'braintree-web-drop-in-react';
 import axios from 'axios';
 import  toast  from 'react-hot-toast';
 import "../styles/CartStyles.css";
+import { AiFillWarning } from "react-icons/ai";
 
 const CartPage = () => {
   const [auth,setAuth] = useAuth();
@@ -82,42 +83,54 @@ const CartPage = () => {
 
   return (
     <Layout>
-        <div className='container'>
+        <div className='cart-page'>
             <div className='row'>
               <div className='col-md-12'>
                 <h1 className='text-center bg-light p-2 mb-1'>
-                  {`Hello ${auth?.token && auth?.user?.name}`}
+                  {/* {`Hello ${auth?.token && auth?.user?.name}`} */}
+                  {!auth?.user ? "Hello Guest" : `Hello ${auth.token && auth.user?.name}`}
+                  <p className="text-center">
+                    {cart?.length
+                      ? `You Have ${cart.length} items in your cart ${
+                          auth?.token ? "" : "please login to checkout !"
+                        }`
+                      : " Your Cart Is Empty"}
+                  </p>
                 </h1>
-                <h4 className='text-center'>
-                  {cart?.length ? `You have ${cart.length} items in your Cart ${auth?.token ? "" : "Please Login to checkout"}` : "Your Cart is empty"}
-                </h4>
               </div>
             </div>
-            <div className='row'>
-              <div className='col-md-8'>
-                <div className='row'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-md-7 p-0 m-0'>
                   {cart?.map((p) => (
-                    <div className='row mb-2 p-3 card flex-row'>
+                    <div className='row card flex-row' key={p._id}>
                       <div className='col-md-4'>
                       <img
                         src={`/api/v1/product/product-photo/${p._id}`}
                         className="card-img-top"
                         alt={p.name}
                         width="100px"
-                        height={"100px"}
+                        height={"130px"}
                       />           
                       </div>
-                      <div className='col-md-8'>
-                        <h4>{p.name}</h4>
+                      <div className='col-md-4'>
+                        <p>{p.name}</p>
                         <p>{p.description.substring(0,30)}</p>
-                        <h4>Price :₹ {p.price}</h4>
-                        <button className='btn btn-danger' onClick={() => removeCartItem(p._id)}>Remove</button>
-                      </div>
+                        <p>Price :₹ {p.price}</p>
+                        </div>
+                        <div className="col-md-4 cart-remove-btn">
+                          <button
+                            className="btn btn-danger"
+                            onClick={() => removeCartItem(p._id)}
+                          >
+                            Remove
+                          </button>
+                        </div>
                     </div>
                   ))}
                 </div>
-              </div>
-              <div className='col-md-4 text-center'>
+              
+              <div className='col-md-5 cart-summary'>
                 <h2>Cart Summary</h2>
                 <p>Total | Checkout | Payment</p>
                 <hr/>
@@ -170,6 +183,7 @@ const CartPage = () => {
               )}
             </div>
               </div>
+            </div>
             </div>
         </div>
     </Layout>

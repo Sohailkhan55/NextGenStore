@@ -5,7 +5,7 @@ import userModel from "../models/userModel.js";
 //in middleware after req,next will be validated and after that response will be sent
 export const requireSignIn = async (req, res, next) => {
   try {
-    const decode = JWT.verify(
+    const decode = JWT.verify(    //whenever we make a request,next will be validated and then response will be sent
       req.headers.authorization,
       process.env.JWT_SECRET
     );

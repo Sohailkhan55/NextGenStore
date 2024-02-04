@@ -259,11 +259,12 @@ export const orderStatusController = async(req,res) => {
 //all users
 export const getUserController = async (req,res) => {
   try {
-    const users = await userModel.find({});
+    const users = await userModel.find({});//.populate('name','email');
     res.status(200).send({
       success : true,
       message : 'All users',
-      users
+      users,
+      length : users.length
     })
 
   }
@@ -276,3 +277,85 @@ export const getUserController = async (req,res) => {
     })
   }
 }
+
+//delete a user
+export const deleteUserController = async (req,res) => {
+  try{
+      await userModel.findByIdAndDelete(req.params.id);
+      res.status(200).send({
+          success : true,
+          message : 'User deleted successfully'
+      })
+  }catch(error){
+      console.log(error);
+      res.status(500).send({
+          success:false,
+          message:'Error while deleting product',
+          error
+      })
+  }
+};
+
+// promote user
+export const promoteUserController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    // Check if user exists
+    const user = await userModel.findById(id);
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    // Update user role to 1 (admin)
+    const updatedUser = await userModel.findByIdAndUpdate(id, { role: 1 }, { new: true });
+
+    res.status(200).send({
+      success: true,
+      message: 'User promoted successfully',
+      user: updatedUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: 'Error while promoting user',
+      error,
+    });
+  }
+};
+
+// promote user
+export const demoteUserController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    // Check if user exists
+    const user = await userModel.findById(id);
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    // Update user role to 1 (admin)
+    const updatedUser = await userModel.findByIdAndUpdate(id, { role: 0 }, { new: true });
+
+    res.status(200).send({
+      success: true,
+      message: 'Admin demoted successfully',
+      user: updatedUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: 'Error while promoting user',
+      error,
+    });
+  }
+};
