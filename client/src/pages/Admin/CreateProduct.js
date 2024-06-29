@@ -41,7 +41,7 @@ const CreateProduct = () => {
   const handleCreate = async (e) => {
     e.preventDefault();
     try{
-      const productData = new FormData();
+      const productData = new FormData(); //since we've photo in data
       productData.append('name',name);
       productData.append('description',description);
       productData.append('price',price);
@@ -76,6 +76,7 @@ const CreateProduct = () => {
                 <h1>Create Product</h1>
                 <div className='m-1 w-75'>
                   <Select bordered={false} placeholder='Select a category' size='large' showSearch className='form-select mb-3' onChange={(value)=>{setCategory(value)}}>
+                    {/* In Select we get value prop */}
                       {categories?.map(c => (
                         <Option key={c._id} value={c._id}>{c.name}</Option>
                       ))}

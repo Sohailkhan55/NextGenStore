@@ -25,8 +25,8 @@ const Register = () => {
         address,
         answer,
       });
-      if (res && res.data.success) {
-        toast.success(res.data && res.data.message);
+      if (res && res.data.success) { //in res we've a data object and success we passwed in our controller in backend
+        toast.success(res.data && res.data.message); //we passed it as response in bacend controller
         navigate("/login");
       } else {
         toast.error(res.data.message);

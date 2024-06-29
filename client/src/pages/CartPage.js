@@ -39,7 +39,7 @@ const CartPage = () => {
     try{
       let myCart = [...cart];
       let index = myCart.findIndex(item => item._id === pid);
-      myCart.splice(index,1);
+      myCart.splice(index,1);//remove
       setCart(myCart);
       localStorage.setItem('cart',JSON.stringify(myCart));  //save new cart locally in browser
     }catch(error){

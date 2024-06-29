@@ -9,7 +9,7 @@ import { useAuth } from "../../context/auth";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [auth, setAuth] = useAuth();
+  const [auth, setAuth] = useAuth(); //custom hook
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,11 +26,11 @@ const Login = () => {
         toast.success(res.data && res.data.message);
         setAuth({
           ...auth,  //keep previous values as it is
-          user: res.data.user,
+          user: res.data.user, //defined in context
           token: res.data.token,
         });
-        localStorage.setItem("auth", JSON.stringify(res.data));
-        navigate(location.state || "/");
+        localStorage.setItem("auth", JSON.stringify(res.data)); //store in localstorage,we can't store json data in localStorage,that's why we've to stringify it
+        navigate(location.state || "/"); //go to state it previusly was o/w go to home page
       } else {
         toast.error(res.data.message);
       }

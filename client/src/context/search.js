@@ -4,8 +4,8 @@ import { useState, useContext, createContext } from "react";
 const SearchContext = createContext();
 const SearchProvider = ({ children }) => {
   const [auth, setAuth] = useState({
-    keyword : "",
-    results : [],
+    keyword : "",//keyword initially null ,a variable
+    results : [], //a variable
   });
 
   return (

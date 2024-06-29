@@ -6,7 +6,7 @@ import {Helmet} from "react-helmet";
 
 
 const Layout = ({ children,title,description,keywords,author }) => {   //directly destructuring children without props
-  return (
+  return (  //destructuring children in props so as to avoid writing props.children
     <div>
       <Helmet>
         <meta charSet="utf-8" />

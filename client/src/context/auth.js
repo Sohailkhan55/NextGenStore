@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext, createContext } from "react";
 import axios from "axios";
 
-const AuthContext = createContext();
-const AuthProvider = ({ children }) => {
+const AuthContext = createContext(); //create context and store it in a avariable
+const AuthProvider = ({ children }) => { //we can access it from anywhere
   const [auth, setAuth] = useState({
     user: null,
     token: "",
@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const data = localStorage.getItem("auth");
     if (data) {
-      const parseData = JSON.parse(data);
+      const parseData = JSON.parse(data); //convert to json from string
       setAuth({ //set global state
         ...auth,
         user: parseData.user,
@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-// custom hook
-const useAuth = () => useContext(AuthContext);
+// custom hook which is an arrow fn
+const useAuth = () => useContext(AuthContext); //now we can use this useAuth in any component
 
 export { useAuth, AuthProvider };

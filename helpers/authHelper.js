@@ -8,7 +8,7 @@ export const hashPassword = async (password) => {
   } catch (error) {
     console.log(error);
   }
-};
+};  //unnamed exports,so use {} whie importing
 
 export const comparePassword = async (password, hashedPassword) => {
   return bcrypt.compare(password, hashedPassword);

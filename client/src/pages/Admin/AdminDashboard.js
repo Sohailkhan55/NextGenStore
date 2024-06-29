@@ -3,7 +3,7 @@ import Layout from '../../components/Layout/Layout'
 import AdminMenu from '../../components/Layout/AdminMenu';
 import { useAuth } from '../../context/auth';
 const AdminDashboard = () => {
-  const [auth] = useAuth();
+  const [auth] = useAuth(); //custom hook
   return (
     <Layout>
       <div className='container-fluid m-3 p-3'>

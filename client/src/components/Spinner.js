@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-const Spinner = ({path="login"}) => {
-  const [count, setCount] = useState(3);
+const Spinner = ({path="login"}) => {  //path is a prop here and taken logic as default value
+  const [count, setCount] = useState(3); //3 sec is initial spinning time
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -10,10 +10,10 @@ const Spinner = ({path="login"}) => {
       setCount((prevValue) => --prevValue);
     }, 1000);//1s
     count === 0 &&
-      navigate(`/${path}`, {
+      navigate(`/${path}`, { //track user's locn history from url
         state: location.pathname,
       });
-    return () => clearInterval(interval);
+    return () => clearInterval(interval); //terminate interval
   }, [count, navigate, location,path]);
   return (
     <>

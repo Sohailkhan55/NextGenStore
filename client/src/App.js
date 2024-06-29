@@ -29,7 +29,7 @@ import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <>
-      {/* Routes acts as a container */}
+      {/* Routes acts as a container and inside that we can keep route */}
       <Toaster/>
       <Routes>
       <Route path="/" element={<HomePage />} />
@@ -59,6 +59,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/policy" element={<Policy />} />
         <Route path="*" element={<Pagenotfound />} />
+        {/* If above all Routes are not found,then this will be executed,PageNotFound */}
       </Routes>
     </>
   );

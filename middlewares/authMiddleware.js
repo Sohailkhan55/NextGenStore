@@ -6,10 +6,10 @@ import userModel from "../models/userModel.js";
 export const requireSignIn = async (req, res, next) => {
   try {
     const decode = JWT.verify(    //whenever we make a request,next will be validated and then response will be sent
-      req.headers.authorization,
+      req.headers.authorization, //token will be in headers in authorization & decode key is JWT_SECRET
       process.env.JWT_SECRET
     );
-    req.user = decode;
+    req.user = decode; //decrypt,to read id
     next();  //after this further code will be executed
   } catch (error) {
     console.log(error);
@@ -26,7 +26,7 @@ export const isAdmin = async (req, res, next) => {
         message: "UnAuthorized Access",
       });
     } else {
-      next();
+      next();//allow further execution if user is admin
     }
   } catch (error) {
     console.log(error);

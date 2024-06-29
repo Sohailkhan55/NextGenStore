@@ -24,7 +24,7 @@ const app = express();
 
 //middelwares
 app.use(cors());
-app.use(express.json());
+app.use(express.json());//in req and reqsponse we can send json data,instead of bodyParser,we can do by this in express
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname,'./client/build')))
 
@@ -45,7 +45,7 @@ app.use('*',function(req,res){
 const PORT = process.env.PORT || 4000;
 
 //run listen
-app.listen(PORT, () => {
+app.listen(PORT, () => { //Note: It is connected with expense tracker project DB
   console.log(
     `Server Running on ${process.env.DEV_MODE} mode on port ${PORT}`.bgCyan.white
 

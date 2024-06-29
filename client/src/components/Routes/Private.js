@@ -10,7 +10,7 @@ export default function PrivateRoute() {
 
   useEffect(() => {
     const authCheck = async () => {
-      const res = await axios.get("http://localhost:4000/api/v1/auth/user-auth");
+      const res = await axios.get("/api/v1/auth/user-auth");
       if (res.data.ok) {
         setOk(true);
       } else {
@@ -21,4 +21,5 @@ export default function PrivateRoute() {
   }, [auth?.token]);
 
   return ok ? <Outlet /> : <Spinner />;
+  //<Outlet /> -> for nested routing in Private.js
 }

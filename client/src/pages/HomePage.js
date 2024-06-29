@@ -15,7 +15,7 @@ const HomePage = () => {
   const [checked,setChecked] = useState([]);  //multiple values might be checked
   const [radio,setRadio] = useState([]);
   const [total,setTotal] = useState(0);
-  const [page,setPage] = useState(1);
+  const [page,setPage] = useState(1); //on one age we've 6 products as defined in productListController
   const [loading,setLoading] = useState(false);
   const [cart,setCart] = useCart();
 
@@ -111,7 +111,7 @@ const HomePage = () => {
   //get filtered product
   const filterProduct = async () => {
     try{
-      const {data} = await axios.post('/api/v1/product/product-filters',{checked,radio});
+      const {data} = await axios.post('/api/v1/product/product-filters',{checked,radio}); //value passing,therefore post
       setProducts(data?.products);
     }catch(error){
       console.log(error);
@@ -128,7 +128,8 @@ const HomePage = () => {
   }
 
   return (
-    <Layout title={'All Products - Best offers'}>
+    <Layout title={'All Products - Best offers'}> 
+    {/* Wrap homepage by layout */}
        {/* banner image */}
        <img
         src="/images/banner.png"
@@ -161,6 +162,7 @@ const HomePage = () => {
           <div className="d-flex flex-column">
             <button className="btn btn-danger" onClick={() => window.location.reload()}>RESET FILTERS</button>
           </div>
+          {/* Just Resfresh the page for RESET Filters */}
 
 
         </div>

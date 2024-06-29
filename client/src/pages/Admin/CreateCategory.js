@@ -33,7 +33,7 @@ const CreateCategory = () => {
   // get all category
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get('/api/v1/category/get-category');
+      const { data } = await axios.get('/api/v1/category/get-category');//directly destructure data in res.data
       if (data?.success) {
         setCategories(data?.category);
       }

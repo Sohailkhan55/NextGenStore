@@ -18,8 +18,8 @@ const productSchema = new mongoose.Schema({
         required : true,
     },
     category:{
-        type:mongoose.ObjectId,  //To link product with category
-        ref:'Category',
+        type:mongoose.ObjectId,   // to ensure category is unique
+        ref:'Category',   //To link product with category
         required : true
     },
     quantity:{
@@ -33,6 +33,27 @@ const productSchema = new mongoose.Schema({
     shipping:{  //status of order
         type:Boolean,
     },
+    reviews: [
+      {
+        user: {
+          type: mongoose.Schema.ObjectId,
+          ref: "users",
+          required: true,
+        },
+        name: {
+          type: String,
+          required: true,
+        },
+        rating: {
+          type: Number,
+          required: true,
+        },
+        comment: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
     
 
 

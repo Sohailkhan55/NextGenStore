@@ -19,7 +19,7 @@ var gateway = new braintree.BraintreeGateway({
 export const createProductController = async (req,res) => {
     try{
         const {name,slug,description,price,category,quantity,shipping} = req.fields;//by formidable
-        const {photo} = req.files;
+        const {photo} = req.files; //get data from fields
         //Validation
         switch(true){
             case !name : return res.status(500).send({error:'Name is required'});
@@ -170,7 +170,7 @@ export const updateProductController = async (req,res) => {
 //Filters
 export const productFiltersController = async (req,res) => {
     try{
-        const {checked,radio} = req.body;
+        const {checked,radio} = req.body; //get both values for filter
         let args = {}               //since multiple queries,we need to check checkbox and radio both
         if(checked.length > 0){
             args.category = checked;
@@ -179,7 +179,7 @@ export const productFiltersController = async (req,res) => {
 
             args.price = {$gte : radio[0],$lte : radio[1]}
         }
-        const products = await productModel.find(args); //in args,we've queries
+        const products = await productModel.find(args); //in args,we've queries of mongodb using mongoose
         res.status(200).send({
             success : true,
             products
@@ -238,7 +238,7 @@ export const searchProductController = async (req,res) => {
     try{
         const {keyword}= req.params;
         const results = await productModel.find({$or:[{name :{$regex :keyword,$options : "i"}},
-        {description :{$regex :keyword,$options : "i"}}
+        {description :{$regex :keyword,$options : "i"}} //show product when found in either name or description, i means case insensitive
     ],
     
     }) .select("-photo") //regex to find keyword in name and description and make it case insensitive
@@ -336,7 +336,7 @@ export const braintreePaymentController = async (req,res) => {
                     payment : result,
                     buyer : req.user._id
                 }).save();
-                res.json({ok : true});
+                res.json({ok : true});//ok:true, message
             }
             else{
                 res.status(500).send(error);

@@ -8,12 +8,12 @@ import { useCart } from "../../context/cart";
 import { Avatar, Badge } from "antd";
 
 const Header = () => {
-  const [auth, setAuth] = useAuth();
+  const [auth, setAuth] = useAuth(); //custom hook
   const [cart] = useCart();
   const categories = useCategory(); //custom hook
   const handleLogout = () => {
     setAuth({
-      ...auth,
+      ...auth,//spreading bcoz not necessary it'll have only user & tke, we're keeping all things same and then modifying userand token as per our need
       user: null,
       token: "",
     });

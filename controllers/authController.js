@@ -32,7 +32,7 @@ export const registerController = async (req, res) => {
     if (exisitingUser) {
       return res.status(200).send({
         success: false,
-        message: "Already Register please login",
+        message: "Already Registered, Please login",
       });
     }
     //register user
@@ -62,7 +62,7 @@ export const registerController = async (req, res) => {
   }
 };
 
-//POST LOGIN
+//POST LOGIN -> callback fn,therefore req,res
 export const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -81,7 +81,7 @@ export const loginController = async (req, res) => {
         message: "Email is not registerd",
       });
     }
-    const match = await comparePassword(password, user.password);
+    const match = await comparePassword(password, user.password);//user.password is already hashed password
     if (!match) {
       return res.status(200).send({
         success: false,
@@ -103,13 +103,13 @@ export const loginController = async (req, res) => {
         address: user.address,
         role : user.role
       },
-      token,
+      token, //now we can protect our routes using this toke,in middleware if we get token,then only we'll show specific routes
     });
   } catch (message) {
     console.log(message);
     res.status(500).send({
       success: false,
-      message: "message in login",
+      message: "Error in login",
       message,
     });
   }
