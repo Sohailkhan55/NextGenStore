@@ -1,4 +1,4 @@
-# E-Commerce App with MERN Stack
+# NextGenStore
 
 ## Overview
 
